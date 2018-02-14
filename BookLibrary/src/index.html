@@ -10,23 +10,6 @@
 </head>
 <body>
   <app-root></app-root>
-  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBpMYFmpjJkgMix3iqpk64_3ZPAi27F77s",
-    authDomain: "booklibrary-83301.firebaseapp.com",
-    databaseURL: "https://booklibrary-83301.firebaseio.com",
-    projectId: "booklibrary-83301",
-    storageBucket: "booklibrary-83301.appspot.com",
-    messagingSenderId: "1053126742075"
-  };
-  firebase.initializeApp(config);
-  var root=firebase.database().ref('/9');
-   root.on('value',(snap)=>{
-     console.log(snap.val());
-   })
-</script>
 </body>
 
 </html>
