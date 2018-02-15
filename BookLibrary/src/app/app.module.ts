@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import {fireconfig } from "./shared/firebase.config";
 import { CardsComponent } from './cards/cards.component';
 import { TrelloBoadsComponent } from './trello-boads/trello-boads.component';
+import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     CardsComponent,
-    TrelloBoadsComponent
+    TrelloBoadsComponent,
+    MenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
