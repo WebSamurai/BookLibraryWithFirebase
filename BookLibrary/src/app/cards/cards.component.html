@@ -1,3 +1,29 @@
-<p>
-  cards works!
-</p>
+<div class="container">
+  <div class="row"> 
+
+
+      <div class="col-mg-4">
+          <h4> Now</h4>
+          <div class="well" *ngFor="let item of new ">
+            <span> {{item.title}}</span>
+      
+          </div>
+      
+        </div>
+        <div class="col-mg-4">
+          <h4> In Progress</h4>
+          <div class="well" *ngFor="let item of inProgress ">
+            <span> {{item.title}}</span>
+      
+          </div>
+        </div>
+        <div class="col-mg-4">
+          <h4> Done</h4>
+          <div class="well" *ngFor="let item of done ">
+            <span> {{item.title}}</span>
+      
+          </div>
+        </div>
+  </div>
+  
+</div>
