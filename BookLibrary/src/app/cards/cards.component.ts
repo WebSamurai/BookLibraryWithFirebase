@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CardService } from '../card.service';
-import { Card } from '../shared/Models/card.model';
+import { CardService } from "../shared/services/card.service";
+import { Card } from "../shared/enitites/card";
+
+
 
 @Component({
   selector: 'app-cards',
@@ -8,19 +10,19 @@ import { Card } from '../shared/Models/card.model';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-new:Card[]
-inProgress:Card[]
-done:Card[]
+newCards:Card[]
+inProgressCards:Card[]
+doneCards:Card[]
   constructor(private cardService:CardService) { }
  
   ngOnInit() {
-   this.GetCards("new").subscribe(x=>this.new=x as Card[]);
+   this.GetCards("new").subscribe(x=>this.newCards=x as Card[]);
    this.GetCards("Inprogress").subscribe(x=>
-    { this.inProgress=x as Card[];
+    { this.inProgressCards=x as Card[];
        console.log(x);}
    );
    this.GetCards("done").subscribe(x=>{
-     this.done=x as Card[];
+     this.doneCards=x as Card[];
     console.log(x);
     } );
                     
@@ -29,7 +31,7 @@ done:Card[]
 
   private GetCards(status:string)
    {
-     return this.cardService.ListCardsByStatus(status)
+     return this.cardService.ListByStatus(status)
       .valueChanges()
   }
 }

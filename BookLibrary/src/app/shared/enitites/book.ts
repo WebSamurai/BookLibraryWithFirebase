@@ -1,4 +1,6 @@
-export class Book 
+import { IEntity } from "../Interfaces/IEntity";
+
+export class Book implements IEntity
 {
     $key: string;
 

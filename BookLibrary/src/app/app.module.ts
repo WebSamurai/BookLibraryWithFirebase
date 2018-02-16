@@ -10,6 +10,7 @@ import { TrelloBoadsComponent } from './trello-boads/trello-boads.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { CardService } from './card.service';
+import { BooklistComponent } from './book/booklist/booklist.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CardService } from './card.service';
     CardsComponent,
     TrelloBoadsComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    BooklistComponent
   ],
   imports: [
     BrowserModule,
