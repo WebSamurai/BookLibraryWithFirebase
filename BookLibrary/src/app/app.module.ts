@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { BooklistComponent } from './book/booklist/booklist.component';
 import { CardService } from "./shared/services/card.service";
+import { BooksService } from './shared/services/books.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { CardService } from "./shared/services/card.service";
     BrowserModule,
     AngularFireModule.initializeApp(fireconfig)
   ],
-  providers: [AngularFireDatabase,CardService],
+  providers: [AngularFireDatabase,CardService,BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

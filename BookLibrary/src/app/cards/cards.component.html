@@ -2,24 +2,24 @@
   <div class="row"> 
 
 
-      <div class="col-mg-4">
-          <h4> Now</h4>
-          <div class="well" *ngFor="let item of new ">
+      <div class="col-md-4 well">
+        Now
+          <div class="well  success" *ngFor="let item of newCards ">
             <span> {{item.title}}</span>
       
           </div>
       
         </div>
-        <div class="col-mg-4">
-          <h4> In Progress</h4>
-          <div class="well" *ngFor="let item of inProgress ">
+        <div class="col-md-4 well ">
+          In Progress
+          <div class="well active" *ngFor="let item of inProgressCards">
             <span> {{item.title}}</span>
       
           </div>
         </div>
-        <div class="col-mg-4">
-          <h4> Done</h4>
-          <div class="well" *ngFor="let item of done ">
+        <div class="col-md-4 well">
+          Done
+          <div class="well warning" *ngFor="let item of doneCards">
             <span> {{item.title}}</span>
       
           </div>

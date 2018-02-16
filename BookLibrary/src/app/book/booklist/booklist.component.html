@@ -1,3 +1,17 @@
-<p>
-  booklist works!
-</p>
+<div class="container"> 
+  <table class="row table "> 
+      <tr >
+          <th> author</th> 
+          <th> country</th> 
+          <th> author</th> 
+        
+       </tr>
+ <tr *ngFor="let book of books">
+    <td> {{ book.author }}</td> 
+    <td> {{ book.country }}</td> 
+    <td> {{ book.author }}</td> 
+  
+ </tr>
+  </table>
+
+</div>

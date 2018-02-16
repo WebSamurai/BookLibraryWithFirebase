@@ -12,7 +12,7 @@ export class CardService extends BaseService<Card>{
  
  constructor(angularFire:AngularFireDatabase) {
 
-   super(angularFire,'Books');
+   super(angularFire,'Cards');
 
  }
 
