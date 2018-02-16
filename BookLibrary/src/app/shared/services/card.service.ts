@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase,AngularFireList } from 'angularfire2/database';
-import { Card } from './shared/Models/card.model';
+
 import { Observable } from 'rxjs/Observable';
 import { BaseService } from "./BaseService";
+import { Card } from "../enitites/card";
 
 @Injectable()
 export class CardService extends BaseService<Card>{
