@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-12">
+  <h1> {{_entityName}} </h1>
+
+  </div>
+</div>
+<div class="row" [hidden]="_addEditMode">
+  <div class="col-12">
+    <form class="form-inline my-2 mx-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary my-2 my-sm-0  mx-2 " type="button">Search</button>
+      <button class="btn btn-primary my-2 my-sm-0  mx-2 " type="button" (click)="ShowForm('add')">Add</button>
+
+    </form>
+  </div>
+  <div class="col-12 card mt-5">
+    <table class="table">
+      <tr>
+        <th *ngFor="let column of _columns" [hidden]='HideColumn(column)'>{{column}}</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let entity of entities|async">
+        <td *ngFor="let column of _columns" [hidden]='HideColumn(column)'>{{entity[column]}}</td>
+        <td>
+          <button class="btn btn-info my-2 my-sm-0  mx-2 " type="button" (click)="ShowForm('edit',entity)">Edit</button>
+
+        </td>
+        <td>
+          <button class="btn btn-danger my-2 my-sm-0  mx-2 " type="button" (click)="ConfirmDelete(entity)">Delete</button>
+
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+<div class="row" [hidden]="!_addEditMode">
+  <div class="col-12">
+    <form (ngSubmit)="save(f.value)" #f="ngForm">
+
+      <div class="form-group col-6" *ngFor="let field of _columns" [hidden]="field=='$key'">
+
+        <label for="exampleInputEmail1">{{field}}</label>
+        <input type="email" class="form-control" [id]="field" [value]="en" [name]="field" [placeholder]="field" [(ngModel)]="_entity[field]">
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-primary" (click)="Cancel()">Cancel</button>
+
+    </form>
+
+  </div>
+
+</div>

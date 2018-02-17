@@ -11,6 +11,7 @@ export class BooksService extends BaseService<Book>  {
    super(angularFire,'Books');
 
  }
+
 }
 
 

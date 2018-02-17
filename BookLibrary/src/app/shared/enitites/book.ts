@@ -1,19 +1,26 @@
 import { IEntity } from "../Interfaces/IEntity";
 
-export class Book implements IEntity
-{
-    $key: string;
+export class Book implements IEntity {
+    
+    constructor() {
+        
+    }
+    public $key: string=''
 
-    author: String;
+    public author?: String=''
 
-    country: String;
+    country?: String=''
 
-    imageLink: String;
+    imageLink?: String=''
 
-    language: String;
+    language?: String=''
 
-    title: String;
+    link?: string=''
+    
+    title?: String=''
 
-    year: Number;
+    year?: Number=0
+    
+    pages?: Number=0
 
 }

@@ -10,9 +10,15 @@ export class BaseService<T extends IEntity> implements IService<T>{
    constructor(protected fireDb:AngularFireDatabase,collectionName:string) {
        this._collectionName=collectionName
     }
-  List(): AngularFireList<T> {
-     return this._collection = this.fireDb.list(this._collectionName);
-  }
+  List(limit?:number): AngularFireList<T> {
+    if(limit!=null)
+    {
+     return this._collection = this.fireDb.list(this._collectionName,ref=>ref.limitToLast(limit));
+    }
+    else{
+      return this._collection = this.fireDb.list(this._collectionName)
+    }
+    }
   Add(entity: T) {
   this._collection.push(entity);
   }

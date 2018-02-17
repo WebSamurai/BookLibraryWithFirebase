@@ -13,7 +13,7 @@ export class BooklistComponent implements OnInit {
   constructor(private bookService:BooksService) { }
 
   ngOnInit() {
-    this.bookService.List().valueChanges().subscribe(x=>this.books=x as Book[])
+    this.bookService.List(9).valueChanges().subscribe(x=>this.books=x as Book[])
   }
 
 }

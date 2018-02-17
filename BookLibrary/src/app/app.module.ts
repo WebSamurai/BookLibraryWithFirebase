@@ -12,7 +12,12 @@ import { HomeComponent } from './home/home.component';
 import { BooklistComponent } from './book/booklist/booklist.component';
 import { CardService } from "./shared/services/card.service";
 import { BooksService } from './shared/services/books.service';
-
+import { BanerComponent } from './home/baner/baner.component';
+import { BookdetailsComponent } from './book/bookdetails/bookdetails.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { ManagebooksComponent } from './book/managebooks/managebooks.component';
+import { FormsModule }   from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +25,16 @@ import { BooksService } from './shared/services/books.service';
     TrelloBoadsComponent,
     MenuComponent,
     HomeComponent,
-    BooklistComponent
+    BooklistComponent,
+    BanerComponent,
+    BookdetailsComponent,
+    ManagebooksComponent,
+    // CommonComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(fireconfig)
   ],
   providers: [AngularFireDatabase,CardService,BooksService],

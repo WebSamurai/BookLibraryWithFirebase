@@ -1,29 +1,33 @@
-<div class="container">
-  <div class="row"> 
+  <div class="row">
 
 
-      <div class="col-md-4 well">
-        Now
-          <div class="well  success" *ngFor="let item of newCards ">
-            <span> {{item.title}}</span>
-      
-          </div>
-      
+    <div class="col-4">
+      <span class="lead">Now</span>
+      <div class="card  success" *ngFor="let item of newCards ">
+        <div class="card-body"> {{item.title}}</div>
+
+      </div>
+
+    </div>
+    <div class="col-4">
+
+      <span class="lead">In Progress</span>
+      <div class="card active" *ngFor="let item of inProgressCards">
+        <div class="card-body">
+
+          <span> {{item.title}}</span>
+
         </div>
-        <div class="col-md-4 well ">
-          In Progress
-          <div class="well active" *ngFor="let item of inProgressCards">
-            <span> {{item.title}}</span>
-      
-          </div>
-        </div>
-        <div class="col-md-4 well">
-          Done
-          <div class="well warning" *ngFor="let item of doneCards">
-            <span> {{item.title}}</span>
-      
-          </div>
-        </div>
+
+      </div>
+    </div>
+    <div class="col-4">
+      <span class="lead">Done</span>
+      <div class="card" *ngFor="let item of doneCards">
+
+        <div class="card-body">{{item.title}}</div>
+
+      </div>
+    </div>
   </div>
-  
-</div>
+
