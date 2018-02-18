@@ -12,10 +12,16 @@ export class ManagebooksComponent extends CommonComponent<Book> implements OnIni
   
   constructor(private bookService:BooksService) { 
     
-    super(bookService);
-    this._columns=Object.getOwnPropertyNames(new Book());
-    this._hiddenColumns.push('imageLink','link')
-    this._entity=new Book();
+    super(bookService,);
+    this.BaseSettings();
+  }
+
+  private BaseSettings() {
+        this._entity = new Book();
+    this._columns = Object.getOwnPropertyNames(new Book());
+    this._hiddenColumns.push('imageLink', 'link');
+
+    this._title = "Manage Books";
   }
 
   ngOnInit() {

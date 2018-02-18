@@ -9,59 +9,90 @@ import { Observable } from 'rxjs/Observable';
 //   templateUrl: './common.component.html',
 //   styleUrls: ['./common.component.css']
 // })
-export abstract class CommonComponent<T extends IEntity> 
- {
-  _entityName: string;
-   _columns:string[];
-   _hiddenColumns:string[]=[]
-   entities:  Observable<T[]>;
-   _entity:T
-   _addEditMode:boolean;
-   mode:string;
-    constructor(private service:IService<T>) {
-     this._columns;
-     this._hiddenColumns.push('$key');
-     this._addEditMode=false;
-     this._entityName=  typeof(this._entity)
-    }
-  
-    HideColumn(column:string):boolean{
+export abstract class CommonComponent<T extends IEntity>
+{
+  _title: string;
+  _columns: string[];
+  _hiddenColumns: string[] = []
+  entities: Observable<T[]>;
+  _entity: T
+  _addEditMode: boolean;
+  mode: string;
+  constructor(private service: IService<T>) {
+    this._columns = [];
+    this._hiddenColumns.push('$key');
+    this._addEditMode = false;
 
-      return this._hiddenColumns.includes(column)
-    }
-    List(fiter?:string){
+  }
 
-        //apply fiter logic
-        this.entities= this.service.List().valueChanges()
-        
+  HideColumn(column: string): boolean {
+
+    return this._hiddenColumns.includes(column)
+  }
+  List(fiter?: string) {
+
+    //apply fiter logic
+    this.entities = this.service.List()
+
+  }
+  ShowForm(mode: string, entity?: T) {
+    this._addEditMode = true;
+    console.log(mode);
+    this.mode = mode;
+    if (mode === 'edit') {
+      this._entity = entity
     }
-    ShowForm(mode:string,entity?:T){
-      this._addEditMode=true;
-      console.log(mode);
-      if(mode==='edit')
-      {
-        this._entity=entity
+    else {
+      Object.getOwnPropertyNames(this._entity).forEach(x => this._entity[x] = '')
+
+    }
+  }
+  Cancel() {
+    this._addEditMode = false;
+  }
+  ConfirmDelete(entity: T) 
+  {
+    if(confirm("Do you want to delete?"))
+    {
+        this.service.Delete(entity.$key).then(()=>{
+      alert("Item is deleted");
+   
+        })
+    }
+
+  }
+  ShowEdit(entity: T) {
+
+
+  }
+  Save(formdata: T) {
+    if (this.mode === 'add') {
+      console.log(formdata);
+
+      this.service.Add(formdata).then((x) => {
+        this._addEditMode = false
+        console.log(x);
+      }, (rejection) => {
+
+        console.log(rejection);
+        this._addEditMode = true
       }
-    }
-    Cancel(){
-      this._addEditMode=false;
-    }
-    ConfirmDelete(entity:T){
-      console.log(entity);
-      
-    }
-    ShowEdit(entity:T){
-
+      )
 
     }
-    Add(formdata:T){
+    else {
+      console.log(formdata);
+      this.service.Update(formdata).then(x=>{
+        this._addEditMode=false;
+      }).catch(x=>{
+        console.log(x);
+        this._addEditMode = true
+      })
 
-       this.service.Add(formdata) 
     }
-    edit(formdata:T){
-        this.service.Update(formdata);
-    }
-    delete(key:string){
-        this.service.Delete(key);
-    }
+  }
+
+  delete(key: string) {
+    this.service.Delete(key);
+  }
 }

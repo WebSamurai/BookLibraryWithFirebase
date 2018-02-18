@@ -8,7 +8,7 @@ export const routes:Routes=[
     {path:'tasks',component:CardsComponent},
     {path:'books',component:BooklistComponent},
     {path:'managebooks',component:ManagebooksComponent},
-    
-    {path:'*',component:HomeComponent}
+    {path:"user",loadChildren:"./user/user.module#UserModule"},
+    {path:'',component:HomeComponent}
 ]
 
