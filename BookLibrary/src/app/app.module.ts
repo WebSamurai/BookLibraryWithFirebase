@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { ManagebooksComponent } from './book/managebooks/managebooks.component';
 import { FormsModule }   from '@angular/forms';
+import { ToasterService } from './shared/services/toastr.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import { FormsModule }   from '@angular/forms';
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(fireconfig)
   ],
-  providers: [AngularFireDatabase,CardService,BooksService],
+  providers: [AngularFireDatabase,CardService,BooksService,ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

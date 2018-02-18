@@ -11,13 +11,31 @@ import { Observable } from 'rxjs/Observable';
 export class BooklistComponent implements OnInit {
 
   books: Observable<Book[]>;
+  count:number;
+  Pills:number[]=[];
   constructor(private bookService:BooksService) { }
 
   ngOnInit() {
+
+
+   // this.GetCount();
+    
     this.books= this.bookService.List(9);
 
-
-    
   }
+  // GetBooks(limit:number){
+  //   var start=limit-9
+  //   this.books= this.bookService.List(start,limit);
+  // }
+  // GetCount(){
+  //   this.bookService.List().map(list=>list.length).subscribe(x=>
+  //     {
+  //     this.count;
+  //     for (let index = 9; index < this.count, index=+9;) {
+  //      this.Pills.push(index)
+      
+  //   }
+  //   })
+  // }
 
 }

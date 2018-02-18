@@ -6,6 +6,7 @@ import { UserRoutes } from "./user.Routes";
 import { ManageuserComponent } from './manageuser/manageuser.component';
 import { FormsModule }   from '@angular/forms';
 import { UserService } from "../shared/services/user.service";
+import { ToasterService } from "../shared/services/toastr.service";
 
 @NgModule({
     declarations:[UserProfileComponent, ManageuserComponent],

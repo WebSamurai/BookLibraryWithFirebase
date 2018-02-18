@@ -4,6 +4,7 @@ import { IEntity } from '../../Interfaces/IEntity';
 import { Card } from '../../enitites/card';
 import { AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { ToasterService } from '../../services/toastr.service';
 
 // @Component({
 //   templateUrl: './common.component.html',
@@ -18,10 +19,12 @@ export abstract class CommonComponent<T extends IEntity>
   _entity: T
   _addEditMode: boolean;
   mode: string;
+  toasterService:ToasterService
   constructor(private service: IService<T>) {
     this._columns = [];
     this._hiddenColumns.push('$key');
     this._addEditMode = false;
+    this.toasterService= new  ToasterService();
 
   }
 
@@ -55,7 +58,7 @@ export abstract class CommonComponent<T extends IEntity>
     if(confirm("Do you want to delete?"))
     {
         this.service.Delete(entity.$key).then(()=>{
-      alert("Item is deleted");
+          this.toasterService.Warning("Item is deleted");
    
         })
     }
@@ -69,11 +72,12 @@ export abstract class CommonComponent<T extends IEntity>
     if (this.mode === 'add') {
       console.log(formdata);
 
-      this.service.Add(formdata).then((x) => {
+      this.service.Add(formdata).then(() => {
         this._addEditMode = false
-        console.log(x);
+        this.toasterService.Success("Item is created successfully !");
       }, (rejection) => {
 
+        this.toasterService.Error("Error occured check log !");
         console.log(rejection);
         this._addEditMode = true
       }
@@ -82,9 +86,11 @@ export abstract class CommonComponent<T extends IEntity>
     }
     else {
       console.log(formdata);
-      this.service.Update(formdata).then(x=>{
+      this.service.Update(formdata).then(()=>{
         this._addEditMode=false;
+        this.toasterService.Success("Item is updated successfully !");
       }).catch(x=>{
+        this.toasterService.Error("Error occured check log");
         console.log(x);
         this._addEditMode = true
       })
@@ -92,7 +98,4 @@ export abstract class CommonComponent<T extends IEntity>
     }
   }
 
-  delete(key: string) {
-    this.service.Delete(key);
-  }
 }
