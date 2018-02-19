@@ -7,10 +7,15 @@ import { ManageuserComponent } from './manageuser/manageuser.component';
 import { FormsModule }   from '@angular/forms';
 import { UserService } from "../shared/services/user.service";
 import { ToasterService } from "../shared/services/toastr.service";
+import { GridfilterPipe } from "../shared/Infrastructure/gridfilter";
+import { CommonAppModule } from "../shared/Infrastructure/common.module";
 
 @NgModule({
     declarations:[UserProfileComponent, ManageuserComponent],
-    imports:[CommonModule, RouterModule.forChild(UserRoutes),FormsModule],
+    imports:[CommonModule,
+             RouterModule.forChild(UserRoutes),
+             FormsModule,
+             CommonAppModule],
     providers:[UserService],
     exports:[]
 

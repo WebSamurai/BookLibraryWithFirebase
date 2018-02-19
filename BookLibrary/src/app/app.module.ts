@@ -19,6 +19,7 @@ import { routes } from './routes';
 import { ManagebooksComponent } from './book/managebooks/managebooks.component';
 import { FormsModule }   from '@angular/forms';
 import { ToasterService } from './shared/services/toastr.service';
+import { CommonAppModule } from './shared/Infrastructure/common.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +31,14 @@ import { ToasterService } from './shared/services/toastr.service';
     BanerComponent,
     BookdetailsComponent,
     ManagebooksComponent,
-    // CommonComponent
+   
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    AngularFireModule.initializeApp(fireconfig)
+    AngularFireModule.initializeApp(fireconfig),
+    CommonAppModule
   ],
   providers: [AngularFireDatabase,CardService,BooksService,ToasterService],
   bootstrap: [AppComponent]

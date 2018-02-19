@@ -19,6 +19,7 @@ export abstract class CommonComponent<T extends IEntity>
   _entity: T
   _addEditMode: boolean;
   mode: string;
+  _searchTerm:string;
   toasterService:ToasterService
   constructor(private service: IService<T>) {
     this._columns = [];
