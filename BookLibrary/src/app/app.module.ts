@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from "angularfire2";
-
+import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabase } from "angularfire2/database";
 import { AppComponent } from './app.component';
 import {fireconfig } from "./shared/firebase.config";
@@ -20,6 +20,9 @@ import { ManagebooksComponent } from './book/managebooks/managebooks.component';
 import { FormsModule }   from '@angular/forms';
 import { ToasterService } from './shared/services/toastr.service';
 import { CommonAppModule } from './shared/Infrastructure/common.module';
+import { AuthGuard } from './shared/Infrastructure/authGuard';
+import { AuthService } from './shared/services/Auth.Service';
+import { LoginComponent } from './home/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,7 @@ import { CommonAppModule } from './shared/Infrastructure/common.module';
     BanerComponent,
     BookdetailsComponent,
     ManagebooksComponent,
+    LoginComponent,
    
   ],
   imports: [
@@ -38,9 +42,17 @@ import { CommonAppModule } from './shared/Infrastructure/common.module';
     FormsModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(fireconfig),
-    CommonAppModule
+    CommonAppModule,
+    AngularFireAuthModule
   ],
-  providers: [AngularFireDatabase,CardService,BooksService,ToasterService],
+  providers: [
+    AngularFireDatabase,
+    CardService,
+    BooksService,
+    ToasterService,
+    AuthService,
+    AuthGuard],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

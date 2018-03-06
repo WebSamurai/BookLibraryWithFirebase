@@ -9,13 +9,15 @@ import { UserService } from "../shared/services/user.service";
 import { ToasterService } from "../shared/services/toastr.service";
 import { GridfilterPipe } from "../shared/Infrastructure/gridfilter";
 import { CommonAppModule } from "../shared/Infrastructure/common.module";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 @NgModule({
     declarations:[UserProfileComponent, ManageuserComponent],
     imports:[CommonModule,
              RouterModule.forChild(UserRoutes),
              FormsModule,
-             CommonAppModule],
+             CommonAppModule,
+            AngularFireAuthModule],
     providers:[UserService],
     exports:[]
 
