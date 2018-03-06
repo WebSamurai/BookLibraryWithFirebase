@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from "../shared/services/card.service";
 import { Card } from "../shared/enitites/card";
+import { AuthService } from '../shared/services/Auth.Service';
 
 
 
@@ -13,10 +14,18 @@ export class CardsComponent implements OnInit {
 newCards:Card[]
 inProgressCards:Card[]
 doneCards:Card[]
-  constructor(private cardService:CardService) { }
+UserId:string
+  constructor(private cardService:CardService,private authService:AuthService) { }
  
   ngOnInit() {
+    if(this.authService.IsUserAuthenticated()){
+
+      this.authService._user.subscribe(x=> this.UserId=x.uid);
+
+
+    }
    this.GetCards("new").subscribe(x=>this.newCards=x as Card[]);
+   
    this.GetCards("Inprogress").subscribe(x=>
     { this.inProgressCards=x as Card[];
        console.log(x);}

@@ -5,9 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from "firebase/app";
 @Injectable()
 export class AuthService {
-    _authenticated: boolean = false;
-    _user: Observable<firebase.User>
-
+   private _authenticated: boolean = false;
+     _user: Observable<firebase.User>
     constructor(private fireAuth: AngularFireAuth) {
         this.fireAuth.authState.subscribe(auth => {
             if (auth != null) {
@@ -23,6 +22,9 @@ export class AuthService {
         })
 
     }
+   IsUserAuthenticated():boolean{
+       return this._authenticated
+   }
     LoginWithGoogle() {
         this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     }

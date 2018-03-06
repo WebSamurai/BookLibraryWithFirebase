@@ -8,7 +8,7 @@ import { LoginComponent } from "./home/login/login.component";
 export const routes:Routes=[
     {path:"user",loadChildren:"./user/user.module#UserModule"},
     {path:'home',component:HomeComponent},
-    {path:'tasks',component:CardsComponent},
+    {path:'tasks',component:CardsComponent,canActivate:[AuthGuard]},
     {path:'books',component:BooklistComponent},
     {path:'login',component:LoginComponent},
     {path:'managebooks',component:ManagebooksComponent,canActivate:[AuthGuard]},

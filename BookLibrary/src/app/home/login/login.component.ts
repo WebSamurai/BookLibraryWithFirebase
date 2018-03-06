@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   GoogleLogin()
    {
     this.authService.LoginWithGoogle()
-    if (this.authService._authenticated) {
+    if (this.authService.IsUserAuthenticated()) {
       this.router.navigate(["/home"])
     }
   }
