@@ -1,0 +1,44 @@
+.cards-inprogress{
+    -webkit-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    background: #cccccc;
+    margin: 10px;
+ 
+}
+.cards-now{
+    -webkit-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    background: #396e7733;
+ 
+    margin: 10px;
+}
+.cards-done{
+    -webkit-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 35px 0px rgba(0,0,0,0.75);
+    background: #1794b3;
+   
+    margin: 10px;
+}
+.droppable{
+    margin: 10px;
+	padding:10px;
+  border:1px solid #bbb;
+  min-height:600px;
+}
+.highlight{
+	border:solid 1px #0d0;
+}
+.dropItem{
+  display:inline-block;
+  padding:2px 4px;
+  margin:4px;
+  border:1px solid #aaa;
+  background-color:#aaf;
+}
+.card-drop{
+  height: 500px;
+max-height: 500px
+}

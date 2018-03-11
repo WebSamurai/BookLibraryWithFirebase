@@ -1,0 +1,13 @@
+<form (ngSubmit)="Save(f.value)" #f="ngForm">
+
+  <div class="form-group" *ngFor="let field of _columns" [hidden]="HideField(field)">
+
+    <label for="exampleInputEmail1">{{field}}</label>
+    <input type="text" class="form-control" [id]="field"  [name]="field" [placeholder]="field" [(ngModel)]="_entity[field]">
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="Cancel()">Cancel</button>
+
+</form>

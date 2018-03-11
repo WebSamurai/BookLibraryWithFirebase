@@ -5,59 +5,12 @@
   </div>
 </div>
 <div class="row" [hidden]="_addEditMode">
-  <div class="col-8">
-    <form class="form">
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="_searchTerm" [(ngModel)]="_searchTerm" placeholder="any thing">
-          </div>
-      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="_searchTerm" [(ngModel)]="_searchTerm" placeholder="any thing" > -->
-      <!-- <button class="btn btn-primary my-2 my-sm-0  mx-2 " type="button">Search</button> -->
-
-    </form>
-  </div>
-  <div class="col-4">      <button class="btn btn-primary my-2 my-sm-0  mx-2 " type="button" (click)="ShowForm('add')">Add</button>
-  </div>
-  <div class="col-12 card mt-5">
-    <table class="table">
-      <tr>
-        <th *ngFor="let column of _columns" [hidden]='HideColumn(column)'>{{column}}</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      <tr *ngFor="let entity of entities|async|gridfilter:_searchTerm">
-        <td *ngFor="let column of _columns" [hidden]='HideColumn(column)'>{{entity[column]}}</td>
-        <td>
-          <button class="btn btn-info my-2 my-sm-0  mx-2 " type="button" (click)="ShowForm('edit',entity)">Edit</button>
-
-        </td>
-        <td>
-          <button class="btn btn-danger my-2 my-sm-0  mx-2 " type="button" (click)="ConfirmDelete(entity)">Delete</button>
-
-        </td>
-      </tr>
-    </table>
-
-  </div>
-</div>
+  <common-list [entities]="entities" [columns]="_columns" [hiddenColumns]="_hiddenColumns" (showform)="ShowForm($event)" (delete)="ConfirmDelete($event)" #list></common-list> 
+</div> 
 <div class="row" [hidden]="!_addEditMode">
-  <div class="col-12">
-    <form (ngSubmit)="Save(f.value)" #f="ngForm">
+  <div class="col-6">
+      <commonform [entity]="_entity" [columns]="_columns" [hidden]="_hiddenColumns"  (Save)="Save($event)" (Cancel)="Cancel()"></commonform>
 
-      <div class="form-group col-6" *ngFor="let field of _columns" [hidden]="field=='$key'">
-
-        <label for="exampleInputEmail1">{{field}}</label>
-        <input type="text" class="form-control" [id]="field"  [name]="field" [placeholder]="field" [(ngModel)]="_entity[field]">
-
-      </div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="button" class="btn btn-primary" (click)="Cancel()">Cancel</button>
-
-    </form>
 
   </div>
 

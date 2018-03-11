@@ -1,33 +1,109 @@
-  <div class="row">
+ 
+ <div class="row text-white bg-dark">
+   <div class="col-4 ">  <h5>Now</h5></div>
+   <div class="col-4"> <h5 >In Progress</h5></div>
+   <div class="col-4"><h5 >Done</h5> </div>
+ </div>
+ <div class="row" id="area">
 
 
-    <div class="col-4">
-      <span class="lead">Now</span>
-      <div class="card  success" *ngFor="let item of newCards ">
-        <div class="card-body"> {{item.title}}</div>
+    <div class="col-4" id="new">
+    
+      <div class="card cards-now" *ngFor="let item of newCards "
+       [dragDirective]='item'[dragHightlight]="'highlight'" (releaseDrop)="releaseDrop($event)">
+          <div class="card-body">
+              <button type="button" class="close" (click)="Edit(item)">
+                  <span aria-hidden="true"><i class="far fa-edit "></i></span>
+                </button>
+           
+             
+                 <button type="button" class="close" (click)="ConfirmDelete(item)">
+                  <span aria-hidden="true"><i class="fas fa-times"></i>&nbsp;&nbsp;</span>
+                </button>
 
+               
+              <h5 class="card-title">{{item.title}}</h5>
+              <div class="card-body">{{item.discription}} </div>
+  
+          </div>
+     
+       
       </div>
-
+     <div class="card"
+     ><div class="card-body">
+        <button type="button" class="btn btn-primary" (click)="Add()">
+           add card
+          </button>
+      </div
+      ></div>
     </div>
-    <div class="col-4">
+    <div class="col-4" id="inprogress">
 
-      <span class="lead">In Progress</span>
-      <div class="card active" *ngFor="let item of inProgressCards">
+    
+      <div class="card  cards-inprogress" *ngFor="let item of inProgressCards"  [dragDirective]='item'[dragHightlight]="'highlight'" (releaseDrop)="releaseDrop($event)">
         <div class="card-body">
-
-          <span> {{item.title}}</span>
+            <button type="button" class="close" (click)="Edit(item)">
+                <span aria-hidden="true"><i class="far fa-edit "></i></span>
+              </button>
+         
+           
+               <button type="button" class="close" (click)="ConfirmDelete(item)">
+                <span aria-hidden="true"><i class="fas fa-times"></i>&nbsp;&nbsp;</span>
+              </button>
+            <h5 class="card-title">{{item.title}}</h5>
+            <div class="card-body">{{item.discription}} </div>
 
         </div>
-
+       
       </div>
+      <div class="card-drop" dropDirective (dropEvent)="addDropItemInProgres($event)"  class="droppable" [dropHighlight]="'highlight'" >
+        
+        </div>
     </div>
-    <div class="col-4">
-      <span class="lead">Done</span>
-      <div class="card" *ngFor="let item of doneCards">
+    <div class="col-4" id="done">
+      
+      <div class="card cards-done" *ngFor="let item of doneCards" [dragDirective]='item'[dragHightlight]="'highlight'" (releaseDrop)="releaseDrop($event)">
 
-        <div class="card-body">{{item.title}}</div>
+          <div class="card-body">
+              <button type="button" class="close" (click)="Edit(item)">
+                  <span aria-hidden="true"><i class="far fa-edit "></i></span>
+                </button>
+           
+             
+                 <button type="button" class="close" (click)="ConfirmDelete(item)">
+                  <span aria-hidden="true"><i class="fas fa-times"></i>&nbsp;&nbsp;</span>
+                </button>
+              <h5 class="card-title">{{item.title}}</h5>
+              <div class="card-body">{{item.discription}} </div>
+  
+          </div>
 
       </div>
+      <div class="card-drop" dropDirective (dropEvent)="addDropItemInDone($event)"  class="droppable" [dropHighlight]="'highlight'" >
+        
+        </div>
+      <!-- <div class="card" dropDirective (dropEvent)="addDropItem($event)" (dropEventMouse)="dropEventMouse($event)" (dragenterEvent)="dragEnter($event)" (dragleaveEvent)="dragLeave()" class="droppable" [dropHighlight]="'highlight'"  (dragoverMouseEvent)="dragoverMouse($event)" >
+        
+      </div> -->
     </div>
   </div>
 
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="cardModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <commonform [entity]="_entity" [columns]="_columns" [hidden]="_hiddenColumns"  (Save)="Save($event)" (Cancel)="Cancel()"></commonform>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { ArrayObservable } from "rxjs/observable/ArrayObservable";
 import { Observable } from "rxjs/Observable";
 import { promise } from "protractor";
 import * as firebase from 'firebase/app';
+import { AuthService } from "./Auth.Service";
 export class BaseService<T extends IEntity> implements IService<T>{
   _collectionName:string;
   _collectionRef: AngularFireList<T>
@@ -15,7 +16,10 @@ export class BaseService<T extends IEntity> implements IService<T>{
    constructor(protected fireDb:AngularFireDatabase,collectionName:string) {
        this._collectionName=collectionName
        this._collectionRef=this.fireDb.list(this._collectionName)
+      
+    
     }
+    
   List(limit?:number): Observable<T[]>{
     if(limit!=null)
     {
@@ -42,7 +46,8 @@ export class BaseService<T extends IEntity> implements IService<T>{
       return this._collectionRef.update($key, entity);
   }
   Delete(key: string):Promise<void> {
-   return this._collectionRef.remove(key);
+  
+    return this._collectionRef.remove(key);
   }
 
 }

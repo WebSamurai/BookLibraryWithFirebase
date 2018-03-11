@@ -23,6 +23,7 @@ import { CommonAppModule } from './shared/Infrastructure/common.module';
 import { AuthGuard } from './shared/Infrastructure/authGuard';
 import { AuthService } from './shared/services/Auth.Service';
 import { LoginComponent } from './home/login/login.component';
+import { DragDropDirectiveModule} from "angular4-drag-drop";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,7 @@ import { LoginComponent } from './home/login/login.component';
     BanerComponent,
     BookdetailsComponent,
     ManagebooksComponent,
-    LoginComponent,
+    LoginComponent
    
   ],
   imports: [
@@ -43,7 +44,8 @@ import { LoginComponent } from './home/login/login.component';
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(fireconfig),
     CommonAppModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    DragDropDirectiveModule
   ],
   providers: [
     AngularFireDatabase,
